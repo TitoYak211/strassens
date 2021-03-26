@@ -23,10 +23,6 @@ matrix* generateMatrix(int n) {
 	return n_matrix;
 }
 
-void cellVal(matrix* n_matrix, int i, int j, int value) {
-	n_matrix->matrix_array[n_matrix->row_1 + i][n_matrix->col_1 + j] = value;
-}
-
 
 matrix* randomMatrix(int n) {
     struct timeval tv;
@@ -36,7 +32,7 @@ matrix* randomMatrix(int n) {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			int e = rand() % 3 - 1;
-			cellVal(n_matrix, i, j, e);
+			n_matrix->matrix_array[n_matrix->row_1 + i][n_matrix->col_1 + j] = e;
 		}
 	}
 	return n_matrix;
