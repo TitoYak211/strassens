@@ -117,36 +117,36 @@ void modifiedStrassens(matrix* m1, matrix* m2, matrix* m3, int N) {
 	matrix* matrix_m2[4];
 	quadrantMatrices(matrix_m2, m2);
 
-	matrix* pt[8];
+	matrix* m[8];
 	for (int i = 1; i < 8; i++) {
-		pt[i] = createMatrix(m3->matrix_size / 2);
+		m[i] = createMatrix(m3->matrix_size / 2);
 	}
 	matrix* t1 = createMatrix(m3->matrix_size / 2);
 	matrix* t2 = createMatrix(m3->matrix_size / 2);
 
-	modifiedStrassens(pt[1], matrix_m1[0], matrixAddition(t1, matrix_m2[1], matrix_m2[3], -1), N);
-	modifiedStrassens(pt[2], matrixAddition(t1, matrix_m1[0], matrix_m1[1], 1), matrix_m2[3], N);
-	modifiedStrassens(pt[3], matrixAddition(t1, matrix_m1[2], matrix_m1[3], 1), matrix_m2[0], N);
-	modifiedStrassens(pt[4], matrix_m1[3], matrixAddition(t1, matrix_m2[2], matrix_m2[0], -1), N);
-	modifiedStrassens(pt[5], matrixAddition(t1, matrix_m1[0], matrix_m1[3], 1), matrixAddition(t2, matrix_m2[0], matrix_m2[3], 1), N);
-	modifiedStrassens(pt[6], matrixAddition(t1, matrix_m1[1], matrix_m1[3], -1), matrixAddition(t2, matrix_m2[2], matrix_m2[3], 1), N);
-	modifiedStrassens(pt[7], matrixAddition(t1, matrix_m1[0], matrix_m1[2], -1), matrixAddition(t2, matrix_m2[0], matrix_m2[1], 1), N);
+	modifiedStrassens(m[1], matrix_m1[0], matrixAddition(t1, matrix_m2[1], matrix_m2[3], -1), N);
+	modifiedStrassens(m[2], matrixAddition(t1, matrix_m1[0], matrix_m1[1], 1), matrix_m2[3], N);
+	modifiedStrassens(m[3], matrixAddition(t1, matrix_m1[2], matrix_m1[3], 1), matrix_m2[0], N);
+	modifiedStrassens(m[4], matrix_m1[3], matrixAddition(t1, matrix_m2[2], matrix_m2[0], -1), N);
+	modifiedStrassens(m[5], matrixAddition(t1, matrix_m1[0], matrix_m1[3], 1), matrixAddition(t2, matrix_m2[0], matrix_m2[3], 1), N);
+	modifiedStrassens(m[6], matrixAddition(t1, matrix_m1[1], matrix_m1[3], -1), matrixAddition(t2, matrix_m2[2], matrix_m2[3], 1), N);
+	modifiedStrassens(m[7], matrixAddition(t1, matrix_m1[0], matrix_m1[2], -1), matrixAddition(t2, matrix_m2[0], matrix_m2[1], 1), N);
 
 	m3->matrix_size = m3->matrix_size / 2;
-	matrixAddition(m3, pt[5], matrixAddition(t1, pt[4], matrixAddition(t2, pt[6], pt[2], -1), 1), 1);
+	matrixAddition(m3, m[5], matrixAddition(t1, m[4], matrixAddition(t2, m[6], m[2], -1), 1), 1);
 	m3->col_1 = m3->matrix_size;
-	matrixAddition(m3, pt[1], pt[2], 1);
+	matrixAddition(m3, m[1], m[2], 1);
 	m3->row_1 = m3->matrix_size;
-	matrixAddition(m3, pt[5], matrixAddition(t1, pt[1], matrixAddition(t2, pt[3], pt[7], 1), -1), 1);
+	matrixAddition(m3, m[5], matrixAddition(t1, m[1], matrixAddition(t2, m[3], m[7], 1), -1), 1);
 	m3->col_1 = 0;
-	matrixAddition(m3, pt[3], pt[4], 1);
+	matrixAddition(m3, m[3], m[4], 1);
 	m3->row_1 = 0;
 	m3->matrix_size = m3->matrix_size * 2;
 
 	freeMatrix(t1);
 	freeMatrix(t2);
 	for (int i = 1; i < 8; i++) {
-		freeMatrix(pt[i]);
+		freeMatrix(m[i]);
 	}
 	freeQuadrants(matrix_m1);
 	freeQuadrants(matrix_m2);
