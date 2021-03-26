@@ -29,6 +29,7 @@ matrix* randomMatrix(int n) {
 			n_matrix->matrix_array[n_matrix->row_1 + i][n_matrix->col_1 + j] = cell_val;
 		}
 	}
+	
 	return n_matrix;
 }
 
@@ -36,6 +37,7 @@ void freeMatrix(matrix* n_matrix) {
 	for (int i = 0; i < n_matrix->matrix_size; i++) {
 		free(n_matrix->matrix_array[i]);
 	}
+
 	free(n_matrix->matrix_array);
 	free(n_matrix);
 }
@@ -45,7 +47,7 @@ void quadrantMatrices(matrix** matrices, matrix* n_matrix) {
 		matrices[i] = malloc(sizeof(matrix));
 		matrices[i]->matrix_array = n_matrix->matrix_array;
 		matrices[i]->matrix_size = n_matrix->matrix_size / 2;
-		
+
 		if (i / 2 == 0) {
 			matrices[i]->row_1 = n_matrix->row_1;
 		} else {
