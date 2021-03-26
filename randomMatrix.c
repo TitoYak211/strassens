@@ -65,3 +65,17 @@ void freeQuadrants(matrix** matrices) {
 		free(matrices[i]);
 	}
 }
+
+
+void standard(matrix* m1, matrix* m2, matrix* m3) {
+
+	for (int i = 0; i < m1->matrix_size; i++) {
+		for (int j = 0; j < m2->matrix_size; j++) {
+			for (int k = 0; k < m2->matrix_size; k++) {
+				
+				m3->matrix_array[m3->row_1 + i][m3->col_1 + k] = m3->matrix_array[m3->row_1 + i][m3->col_1 + k] + m1->matrix_array[m1->row_1 + i][m1->col_1 + j] * m2->matrix_array[m2->row_1 + j][m2->col_1 + k];
+
+			}
+		}
+	}
+}
