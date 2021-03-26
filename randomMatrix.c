@@ -32,3 +32,11 @@ matrix* randomMatrix(int n) {
 	}
 	return n_matrix;
 }
+
+void freeMatrix(matrix* n_matrix) {
+	for (int i = 0; i < n_matrix->matrix_size; i++) {
+		free(n_matrix->matrix_array[i]);
+	}
+	free(n_matrix->matrix_array);
+	free(n_matrix);
+}
