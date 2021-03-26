@@ -40,17 +40,18 @@ void freeMatrix(matrix* n_matrix) {
 	free(n_matrix);
 }
 
-
 void quadrantMatrices(matrix** matrices, matrix* n_matrix) {
 	for (int i = 0; i < 4; i++) {
 		matrices[i] = malloc(sizeof(matrix));
 		matrices[i]->matrix_array = n_matrix->matrix_array;
 		matrices[i]->matrix_size = n_matrix->matrix_size / 2;
+		
 		if (i / 2 == 0) {
 			matrices[i]->row_1 = n_matrix->row_1;
 		} else {
 			matrices[i]->row_1 = n_matrix->row_1 + n_matrix->matrix_size / 2;
 		}
+
 		if (i % 2 == 0) {
 			matrices[i]->col_1 = n_matrix->col_1;
 		} else {
@@ -65,7 +66,6 @@ void freeQuadrants(matrix** matrices) {
 	}
 }
 
-
 matrix* matrixAddition(matrix* m1, matrix* m2, matrix* m3, int t) {
 	for (int i = 0; i < m1->matrix_size; i++) {
 		for (int j = 0; j < m1->matrix_size; j++) {
@@ -77,13 +77,10 @@ matrix* matrixAddition(matrix* m1, matrix* m2, matrix* m3, int t) {
 }
 
 void standard(matrix* m1, matrix* m2, matrix* m3) {
-
 	for (int i = 0; i < m1->matrix_size; i++) {
 		for (int j = 0; j < m2->matrix_size; j++) {
 			for (int k = 0; k < m2->matrix_size; k++) {
-				
 				m3->matrix_array[m3->row_1 + i][m3->col_1 + k] = m3->matrix_array[m3->row_1 + i][m3->col_1 + k] + m1->matrix_array[m1->row_1 + i][m1->col_1 + j] * m2->matrix_array[m2->row_1 + j][m2->col_1 + k];
-
 			}
 		}
 	}
@@ -95,16 +92,15 @@ matrix* createMatrix(int n) {
 	n_matrix->matrix_array = malloc(sizeof(int*) * n);
 	n_matrix->col_1 = 0;
 	n_matrix->row_1 = 0;
+
 	for (int i = 0; i < n; i++) {
 		n_matrix->matrix_array[i] = calloc(n, sizeof(int));
 	}
+
 	return n_matrix;
 }
 
-
-
 void modifiedStrassens(matrix* m1, matrix* m2, matrix* m3, int N) {
-
 	if (m1->matrix_size <= N || m2->matrix_size <= N) {
 		standard(m1, m2, m3);
 		return;
@@ -120,6 +116,7 @@ void modifiedStrassens(matrix* m1, matrix* m2, matrix* m3, int N) {
 	for (int i = 1; i < 8; i++) {
 		m[i] = createMatrix(m3->matrix_size / 2);
 	}
+
 	matrix* t1 = createMatrix(m3->matrix_size / 2);
 	matrix* t2 = createMatrix(m3->matrix_size / 2);
 
@@ -147,6 +144,7 @@ void modifiedStrassens(matrix* m1, matrix* m2, matrix* m3, int N) {
 	for (int i = 1; i < 8; i++) {
 		freeMatrix(m[i]);
 	}
+
 	freeQuadrants(matrix_m1);
 	freeQuadrants(matrix_m2);
 }
