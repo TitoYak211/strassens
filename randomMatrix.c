@@ -27,3 +27,17 @@ void cellVal(matrix* n_matrix, int i, int j, int value) {
 	n_matrix->matrix_array[n_matrix->row_1 + i][n_matrix->col_1 + j] = value;
 }
 
+
+matrix* randomMatrix(int n) {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    srand((unsigned) tv.tv_usec);
+	matrix* n_matrix = generateMatrix(n);
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			int e = rand() % 3 - 1;
+			cellVal(n_matrix, i, j, e);
+		}
+	}
+	return n_matrix;
+}
