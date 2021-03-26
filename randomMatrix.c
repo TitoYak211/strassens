@@ -40,3 +40,22 @@ void freeMatrix(matrix* n_matrix) {
 	free(n_matrix->matrix_array);
 	free(n_matrix);
 }
+
+
+void divide_nmatrix(matrix** matrices, matrix* n_matrix) {
+	for (int i = 0; i < 4; i++) {
+		matrices[i] = malloc(sizeof(matrix));
+		matrices[i]->matrix_array = n_matrix->matrix_array;
+		matrices[i]->matrix_size = n_matrix->matrix_size / 2;
+		if (i / 2 == 0) {
+			matrices[i]->row_1 = n_matrix->row_1;
+		} else {
+			matrices[i]->row_1 = n_matrix->row_1 + n_matrix->matrix_size / 2;
+		}
+		if (i % 2 == 0) {
+			matrices[i]->col_1 = n_matrix->col_1;
+		} else {
+			matrices[i]->col_1 = n_matrix->col_1 + n_matrix->matrix_size / 2;
+		}
+	}
+}
