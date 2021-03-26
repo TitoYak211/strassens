@@ -152,24 +152,26 @@ void modifiedStrassens(matrix* m1, matrix* m2, matrix* m3, int N) {
 	freeQuadrants(matrix_m2);
 }
 
-
-int runProg(int crossover, int d, int flag, char* filename) {
-	matrix* n_matrix[2];
-	n_matrix[0] = createMatrix(d);
-	n_matrix[1] = createMatrix(d);
+int main(int argc, char* argv[]) {
+	int crossover = 75;
+	int matrix_dimension = (int) strtol(argv[2], NULL, 10);
+	char *filename;
+	matrix *n_matrix[2];
+	n_matrix[0] = createMatrix(matrix_dimension);
+	n_matrix[1] = createMatrix(matrix_dimension);
 
 	FILE* f = fopen(filename, "r");
 
 	char x[11];
 
-	for (int i = 0, n = d * d; i < 2 * n; i++) {
+	for (int i = 0, n = matrix_dimension * matrix_dimension; i < 2 * n; i++) {
 		fscanf(f, "%s\n", x);
-		n_matrix[i / n]->matrix_array[n_matrix[i / n]->row_1 + (i % n) / d][n_matrix[i / n]->col_1 + i % d] = (int) strtol(x, NULL, 10);
+		n_matrix[i / n]->matrix_array[n_matrix[i / n]->row_1 + (i % n) / matrix_dimension][n_matrix[i / n]->col_1 + i % matrix_dimension] = (int) strtol(x, NULL, 10);
 	}
 
 	fclose(f);
 
-	matrix* x_matrix = createMatrix(d);
+	matrix* x_matrix = createMatrix(matrix_dimension);
 
 	time_t s = time(NULL);
 
@@ -177,31 +179,11 @@ int runProg(int crossover, int d, int flag, char* filename) {
 
 	time_t e = time(NULL);
 
-	if (flag == 0) {
-		for (int i = 0; i < d; i++) {
-			printf("%i\n", x_matrix->matrix_array[x_matrix->row_1 + i][x_matrix->col_1 + i]);
-		}
-		printf("\n");
-	} else {
-		printf("Run time for %i, dim %i: %ld\n", crossover, d, e - s);
-	}
-
 	freeMatrix(x_matrix);
 	freeMatrix(n_matrix[0]);
 	freeMatrix(n_matrix[1]);
 
 	return e - s;
-}
 
-
-int main(int argc, char* argv[]) {
-	int crossover = 75;
-
-	int matrix_dimension = (int) strtol(argv[2], NULL, 10);
-	int flag = (int) strtol(argv[1], NULL, 10);
-
-	runProg(crossover, matrix_dimension, flag, argv[3]);
-
-	
-	return 0;
+	// return 0;
 }
