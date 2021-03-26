@@ -1,13 +1,13 @@
 CC=clang
 CFLAGS=-c -Wall -g
 
-all: strassens
+all: strassen
 
-strassens: strassens.o
-	$(CC) strassens.o -o strassens
+strassen: strassens.o
+	$(CC) strassens.o -o strassen
 
 strassens.o: strassens.c
 	$(CC) $(CFLAGS) strassens.c
 
 clean:
-	rm *.o strassens
+	rm *.o strassen
