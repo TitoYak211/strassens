@@ -111,10 +111,11 @@ void modifiedStrassens(matrix* m3, matrix* m1, matrix* m2, int N) {
 		return;
 	}
 	
-	matrix* matrices1[4];
-	matrix* matrices2[4];
-	quadrantMatrices(matrices1, m1);
-	quadrantMatrices(matrices2, m2);
+	matrix* matrix_m1[4];
+	quadrantMatrices(matrix_m1, m1);
+
+	matrix* matrix_m2[4];
+	quadrantMatrices(matrix_m2, m2);
 
 	matrix* pt[8];
 	for (int i = 1; i < 8; i++) {
@@ -123,13 +124,13 @@ void modifiedStrassens(matrix* m3, matrix* m1, matrix* m2, int N) {
 	matrix* tmp1 = createMatrix(m3->matrix_size / 2);
 	matrix* tmp2 = createMatrix(m3->matrix_size / 2);
 
-	modifiedStrassens(pt[1], matrices1[0], matrixAddition(tmp1, matrices2[1], matrices2[3], -1), N);
-	modifiedStrassens(pt[2], matrixAddition(tmp1, matrices1[0], matrices1[1], 1), matrices2[3], N);
-	modifiedStrassens(pt[3], matrixAddition(tmp1, matrices1[2], matrices1[3], 1), matrices2[0], N);
-	modifiedStrassens(pt[4], matrices1[3], matrixAddition(tmp1, matrices2[2], matrices2[0], -1), N);
-	modifiedStrassens(pt[5], matrixAddition(tmp1, matrices1[0], matrices1[3], 1), matrixAddition(tmp2, matrices2[0], matrices2[3], 1), N);
-	modifiedStrassens(pt[6], matrixAddition(tmp1, matrices1[1], matrices1[3], -1), matrixAddition(tmp2, matrices2[2], matrices2[3], 1), N);
-	modifiedStrassens(pt[7], matrixAddition(tmp1, matrices1[0], matrices1[2], -1), matrixAddition(tmp2, matrices2[0], matrices2[1], 1), N);
+	modifiedStrassens(pt[1], matrix_m1[0], matrixAddition(tmp1, matrix_m2[1], matrix_m2[3], -1), N);
+	modifiedStrassens(pt[2], matrixAddition(tmp1, matrix_m1[0], matrix_m1[1], 1), matrix_m2[3], N);
+	modifiedStrassens(pt[3], matrixAddition(tmp1, matrix_m1[2], matrix_m1[3], 1), matrix_m2[0], N);
+	modifiedStrassens(pt[4], matrix_m1[3], matrixAddition(tmp1, matrix_m2[2], matrix_m2[0], -1), N);
+	modifiedStrassens(pt[5], matrixAddition(tmp1, matrix_m1[0], matrix_m1[3], 1), matrixAddition(tmp2, matrix_m2[0], matrix_m2[3], 1), N);
+	modifiedStrassens(pt[6], matrixAddition(tmp1, matrix_m1[1], matrix_m1[3], -1), matrixAddition(tmp2, matrix_m2[2], matrix_m2[3], 1), N);
+	modifiedStrassens(pt[7], matrixAddition(tmp1, matrix_m1[0], matrix_m1[2], -1), matrixAddition(tmp2, matrix_m2[0], matrix_m2[1], 1), N);
 
 	m3->matrix_size = m3->matrix_size / 2;
 	matrixAddition(m3, pt[5], matrixAddition(tmp1, pt[4], matrixAddition(tmp2, pt[6], pt[2], -1), 1), 1);
@@ -147,6 +148,6 @@ void modifiedStrassens(matrix* m3, matrix* m1, matrix* m2, int N) {
 	for (int i = 1; i < 8; i++) {
 		freeMatrix(pt[i]);
 	}
-	freeQuadrants(matrices1);
-	freeQuadrants(matrices2);
+	freeQuadrants(matrix_m1);
+	freeQuadrants(matrix_m2);
 }
