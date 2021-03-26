@@ -106,7 +106,7 @@ matrix* createMatrix(int n) {
 
 void modifiedStrassens(matrix* m3, matrix* m1, matrix* m2, int N) {
 
-	if (m1->matrix_size <= N || m1->matrix_size <= N || m2->matrix_size <= N) {
+	if (m1->matrix_size <= N || m2->matrix_size <= N) {
 		standard(m1, m2, m3);
 		return;
 	}
