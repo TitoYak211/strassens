@@ -201,7 +201,6 @@ int main(int argc, char* argv[]) {
 	int flag = (int) strtol(argv[1], NULL, 10);
 
 	runProg(crossover, matrix_dimension, flag, argv[3]);
-
 	
 	return 0;
 }
