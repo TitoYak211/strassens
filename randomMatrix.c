@@ -89,3 +89,16 @@ void standard(matrix* m1, matrix* m2, matrix* m3) {
 		}
 	}
 }
+
+matrix* createMatrix(int n) {
+	matrix* n_matrix = malloc(sizeof(matrix));
+	n_matrix->matrix_size = n;
+	n_matrix->matrix_array = malloc(sizeof(int*) * n);
+	n_matrix->col_1 = 0;
+	n_matrix->row_1 = 0;
+	for (int i = 0; i < n; i++) {
+		n_matrix->matrix_array[i] = calloc(n, sizeof(int));
+	}
+	return n_matrix;
+}
+}
