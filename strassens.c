@@ -169,26 +169,26 @@ int runProg(int crossover, int d, int flag, char* filename) {
 
 	fclose(f);
 
-	matrix* p = createMatrix(d);
+	matrix* x_matrix = createMatrix(d);
 
 	time_t s = time(NULL);
 
-	modifiedStrassens(p, n_matrix[0], n_matrix[1], crossover);
+	modifiedStrassens(x_matrix, n_matrix[0], n_matrix[1], crossover);
 
 	time_t e = time(NULL);
 
 	if (flag == 0) {
 		for (int i = 0; i < d; i++) {
-			printf("%i\n", p->matrix_array[p->row_1 + i][p->col_1 + i]);
+			printf("%i\n", x_matrix->matrix_array[x_matrix->row_1 + i][x_matrix->col_1 + i]);
 		}
 		printf("\n");
 	} else {
-		printf("Total time for crossover %i, dim %i: %ld\n", crossover, d, e - s);
+		printf("Run time for %i, dim %i: %ld\n", crossover, d, e - s);
 	}
 
+	freeMatrix(x_matrix);
 	freeMatrix(n_matrix[0]);
 	freeMatrix(n_matrix[1]);
-	freeMatrix(p);
 
 	return e - s;
 }
