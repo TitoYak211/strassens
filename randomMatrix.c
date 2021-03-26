@@ -23,3 +23,7 @@ matrix* generateMatrix(int n) {
 	return n_matrix;
 }
 
+void cellVal(matrix* n_matrix, int i, int j, int value) {
+	n_matrix->matrix_array[n_matrix->row_1 + i][n_matrix->col_1 + j] = value;
+}
+
