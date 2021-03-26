@@ -67,6 +67,16 @@ void freeQuadrants(matrix** matrices) {
 }
 
 
+matrix* matrixAddition(matrix* m1, matrix* m2, matrix* m3, int t) {
+	for (int i = 0; i < m1->matrix_size; i++) {
+		for (int j = 0; j < m1->matrix_size; j++) {
+			m3->matrix_array[m3->row_1 + i][m3->col_1 + j] = m1->matrix_array[m1->row_1 + i][m1->col_1 + j] + t * m2->matrix_array[m2->row_1 + i][m1->col_1 + j];
+		}
+	}
+
+	return m3;
+}
+
 void standard(matrix* m1, matrix* m2, matrix* m3) {
 
 	for (int i = 0; i < m1->matrix_size; i++) {
