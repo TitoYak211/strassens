@@ -29,7 +29,7 @@ matrix* randomMatrix(int n) {
 			n_matrix->matrix_array[n_matrix->row_1 + i][n_matrix->col_1 + j] = cell_val;
 		}
 	}
-	
+
 	return n_matrix;
 }
 
@@ -143,6 +143,7 @@ void modifiedStrassens(matrix* m1, matrix* m2, matrix* m3, int N) {
 
 	freeMatrix(t1);
 	freeMatrix(t2);
+	
 	for (int i = 1; i < 8; i++) {
 		freeMatrix(m[i]);
 	}
