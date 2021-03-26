@@ -1,7 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <sys/time.h>
-
+#include <stdlib.h>
 
 typedef struct matrix {
 	int col_1;
@@ -15,10 +14,10 @@ matrix* randomMatrix(int n) {
     gettimeofday(&tv, NULL);
     srand((unsigned) tv.tv_usec);
 	matrix* n_matrix = malloc(sizeof(matrix));
-	n_matrix->col_1 = 0;
-	n_matrix->row_1 = 0;
 	n_matrix->matrix_size = n;
 	n_matrix->matrix_array = malloc(sizeof(int*) * n);
+	n_matrix->col_1 = 0;
+	n_matrix->row_1 = 0;
 
 	for (int i = 0; i < n; i++) {
 		n_matrix->matrix_array[i] = calloc(n, sizeof(int));
