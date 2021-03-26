@@ -42,7 +42,7 @@ void freeMatrix(matrix* n_matrix) {
 }
 
 
-void divide_nmatrix(matrix** matrices, matrix* n_matrix) {
+void quadrantMatrices(matrix** matrices, matrix* n_matrix) {
 	for (int i = 0; i < 4; i++) {
 		matrices[i] = malloc(sizeof(matrix));
 		matrices[i]->matrix_array = n_matrix->matrix_array;
@@ -57,5 +57,11 @@ void divide_nmatrix(matrix** matrices, matrix* n_matrix) {
 		} else {
 			matrices[i]->col_1 = n_matrix->col_1 + n_matrix->matrix_size / 2;
 		}
+	}
+}
+
+void freeQuadrants(matrix** matrices) {
+	for (int i = 0; i < 4; i++) {
+		free(matrices[i]);
 	}
 }
