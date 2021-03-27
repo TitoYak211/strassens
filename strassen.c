@@ -153,7 +153,7 @@ void modifiedStrassens(matrix* m1, matrix* m2, matrix* m3, int N) {
 }
 
 
-int runProg(int crossover, int d, int flag, char* filename) {
+int program(int crossover, int d, int flag, char* filename) {
 	matrix* n_matrix[2];
 	n_matrix[0] = createMatrix(d);
 	n_matrix[1] = createMatrix(d);
@@ -186,10 +186,6 @@ int runProg(int crossover, int d, int flag, char* filename) {
 		printf("Run time for %i, dim %i: %ld\n", crossover, d, e - s);
 	}
 
-	freeMatrix(n_matrix[0]);
-	freeMatrix(n_matrix[1]);
-	freeMatrix(x_matrix);
-
 	return e - s;
 }
 
@@ -200,7 +196,7 @@ int main(int argc, char* argv[]) {
 	int matrix_dimension = (int) strtol(argv[2], NULL, 10);
 	int flag = (int) strtol(argv[1], NULL, 10);
 
-	runProg(crossover, matrix_dimension, flag, argv[3]);
+	program(crossover, matrix_dimension, flag, argv[3]);
 	
 	return 0;
 }
