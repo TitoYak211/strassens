@@ -177,15 +177,6 @@ int program(int crossover, int d, int flag, char* filename) {
 
 	time_t e = time(NULL);
 
-	if (flag == 0) {
-		for (int i = 0; i < d; i++) {
-			printf("%i\n", x_matrix->matrix_array[x_matrix->row_1 + i][x_matrix->col_1 + i]);
-		}
-		printf("\n");
-	} else {
-		printf("Run time for %i, dim %i: %ld\n", crossover, d, e - s);
-	}
-
 	return e - s;
 }
 
